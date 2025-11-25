@@ -1,11 +1,20 @@
 
+import { useState } from 'react'
 import { GifList } from './gifs/components/GifList'
 import { PreviousSearches } from './gifs/components/PreviousSearches'
 import { mockGifs } from './mock-data/gifs.mock'
 import { CustomHeader } from './shared/components/CustomHeader'
 import { SearchBar } from './shared/components/SearchBar'
 
+
 export const GifsApp = () => {
+
+  const [previousTerms, setPreviousTerms] = useState(['dragon ball z']);
+
+  const handleTermClicked = (term: string) => {
+    console.log( { term } );
+  }
+
   return (
     <>
 
@@ -20,7 +29,7 @@ export const GifsApp = () => {
 
 
     {/*  Busquedas Previas  */}
-      <PreviousSearches searches={['Goku','Bellota', 'Doby']}/>
+      <PreviousSearches searches={previousTerms} onLabelClicked={( term: string) => handleTermClicked(term)}/>
 
     {/*  Gifs  */}
       <GifList gifs={mockGifs} />
